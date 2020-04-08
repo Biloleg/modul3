@@ -1,8 +1,9 @@
 package oleh.bilyk;
 
-import static org.junit.Assert.assertTrue;
+import oleh.bilyk.pages.MainPage;
+import org.testng.annotations.Test;
 
-import org.junit.Test;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Unit test for simple App.
@@ -15,6 +16,8 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        assertTrue( true );
+        Driver.get().navigate().to("https://www.highcharts.com/demo/line-basic");
+ new MainPage().openPieChartSubmenu().openPieDrilldownChart();
+ System.out.println("");
     }
 }
