@@ -29,9 +29,12 @@ public class AjaxLineChart extends MainPage {
     public void mouseOver(){
         Actions action = new Actions(getDriver());
         for (WebElement chart: getCharts()) {
+            getChartLabel(chart)
             for (WebElement point:getPoints(chart)) {
                 new DriverWaiter().sleep(300);
                 action.moveToElement(point).build().perform();
+                String s=getDriver().findElement(By.cssSelector(".highcharts-tooltip > text")).getText();
+                point.getAttribute("aria-label");
             }
         }
     }
