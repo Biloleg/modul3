@@ -1,23 +1,19 @@
 package oleh.bilyk;
 
 import oleh.bilyk.pages.MainPage;
+import oleh.bilyk.webDriver.Driver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+public class AppTest {
+@AfterMethod
+public void tearDown(){
+    Driver.kill();
+}
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        Driver.get().navigate().to("https://www.highcharts.com/demo/line-basic");
- new MainPage().openPieChartSubmenu().openPieDrilldownChart();
- System.out.println("");
+    public void shouldAnswerWithTrue() {
+        new MainPage().openLineCharts().openAjaxLineChart().mouseOver();
+        System.out.println("");
     }
 }

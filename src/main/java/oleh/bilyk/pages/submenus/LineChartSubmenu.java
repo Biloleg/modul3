@@ -1,21 +1,30 @@
 package oleh.bilyk.pages.submenus;
 
-import oleh.bilyk.Driver;
+import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.MainPage;
 import oleh.bilyk.pages.charts.AjaxLineChart;
 import org.openqa.selenium.By;
 
+/**
+ * #Summary:
+ * #Author: Oleh_Bilyk
+ * #Author’s Email: oleh_bilyk@epam.com
+ * #Creation Date: 22/04/2020
+ * #Comments:
+ */
 public class LineChartSubmenu extends MainPage {
-    private final By BASIC_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-basic']");
-    private final By AJAX_LINE_ITEM = By.cssSelector(".nav-sidebar [href='\\/demo\\/line-ajax']");
-    private final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
+    private static final By BASIC_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-basic']");
+    private static final By AJAX_LINE_ITEM = By.cssSelector(".nav-sidebar [href='\\/demo\\/line-ajax']");
+    private static final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
 
+    //<editor-fold desc="Public Methods">
     public boolean verify(){
-        return Driver.get().findElement(BASIC_LINE_ITEM).isDisplayed();
+        return Driver.getDriver().findElement(BASIC_LINE_ITEM).isDisplayed();
     }
 
     public AjaxLineChart openAjaxLineChart(){
-        Driver.get().findElement(AJAX_LINE_ITEM).click();
+        Driver.getDriver().findElement(AJAX_LINE_ITEM).click();
         return new AjaxLineChart();
     }
+    //</editor-fold>
 }

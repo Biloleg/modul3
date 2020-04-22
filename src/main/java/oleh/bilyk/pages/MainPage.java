@@ -1,35 +1,60 @@
 package oleh.bilyk.pages;
 
-import oleh.bilyk.Driver;
+import oleh.bilyk.helpers.Config;
 import oleh.bilyk.pages.submenus.ColumnBarChartSubmenu;
 import oleh.bilyk.pages.submenus.LineChartSubmenu;
 import oleh.bilyk.pages.submenus.PieChartSubmenu;
+import oleh.bilyk.webDriver.Driver;
+import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
-public class MainPage {
-    private final By LINE_CHARTS_ITEM = By.xpath("//span[.='Line charts']");
-    private final By AREA_CHARTS_ITEM = By.xpath("//span[.='Area charts']");
-    private final By COLUMN_BAR_CHARTS_ITEM = By.xpath("//span[.='Column and bar charts']");
-    private final By PIE_CHARTS_ITEM = By.xpath("//span[.='Pie charts']");
+import static oleh.bilyk.webDriver.Driver.log;
 
-    public boolean verify(){
-        return Driver.get().findElement(LINE_CHARTS_ITEM).isDisplayed()
-                && Driver.get().findElement(AREA_CHARTS_ITEM).isDisplayed();
+/**
+ * #Summary:
+ * #Author: Oleh_Bilyk
+ * #Author’s Email: oleh_bilyk@epam.com
+ * #Creation Date: 22/04/2020
+ * #Comments:
+ */
+public class MainPage {
+    private static final By LINE_CHARTS_ITEM = By.xpath("//span[.='Line charts']");
+    private static final By AREA_CHARTS_ITEM = By.xpath("//span[.='Area charts']");
+    private static final By COLUMN_BAR_CHARTS_ITEM = By.xpath("//span[.='Column and bar charts']");
+    private static final By PIE_CHARTS_ITEM = By.xpath("//span[.='Pie charts']");
+
+    public MainPage() {
+        if (!verify()) {
+            Driver.getDriver().navigate().to(Config.getInstance().BASE_HOST());
+            new DriverWaiter().waitForElementDisplayed(LINE_CHARTS_ITEM);
+        }
     }
 
-    public LineChartSubmenu openLineCharts(){
-        Driver.get().findElement(LINE_CHARTS_ITEM).click();
+    //<editor-fold desc="Public Methods">
+    public boolean verify() {
+        try {
+            return Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()
+                    && Driver.getDriver().findElement(AREA_CHARTS_ITEM).isDisplayed();
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        return false;
+    }
+
+    public LineChartSubmenu openLineCharts() {
+        Driver.getDriver().findElement(LINE_CHARTS_ITEM).click();
         return new LineChartSubmenu();
     }
 
-    public ColumnBarChartSubmenu openColumnBarChartSubmenu(){
-        Driver.get().findElement(LINE_CHARTS_ITEM).click();
+    public ColumnBarChartSubmenu openColumnBarChartSubmenu() {
+        Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).click();
         return new ColumnBarChartSubmenu();
     }
 
-    public PieChartSubmenu openPieChartSubmenu(){
-        Driver.get().findElement(PIE_CHARTS_ITEM).isDisplayed();
-        Driver.get().findElement(PIE_CHARTS_ITEM).click();
+    public PieChartSubmenu openPieChartSubmenu() {
+        Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed();
+        Driver.getDriver().findElement(PIE_CHARTS_ITEM).click();
         return new PieChartSubmenu();
     }
+    //</editor-fold>
 }

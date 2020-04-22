@@ -1,4 +1,4 @@
-package oleh.bilyk.pages.charts;
+package oleh.bilyk.webDriver;
 
 /**
  * #Summary:
@@ -7,5 +7,7 @@ package oleh.bilyk.pages.charts;
  * #Creation Date: 22/04/2020
  * #Comments:
  */
-public class PieDrilldownChart {
+@FunctionalInterface
+public interface Waiter {
+    void applyWait();
 }
