@@ -22,6 +22,7 @@ public class MainPage {
     private static final By AREA_CHARTS_ITEM = By.xpath("//span[.='Area charts']");
     private static final By COLUMN_BAR_CHARTS_ITEM = By.xpath("//span[.='Column and bar charts']");
     private static final By PIE_CHARTS_ITEM = By.xpath("//span[.='Pie charts']");
+    private static final By BASIC_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-basic']");
 
     public MainPage() {
         if (!verify()) {
@@ -41,19 +42,33 @@ public class MainPage {
         return false;
     }
 
+    public void waitUntilLeave(){
+        new DriverWaiter().waitForElementIsNotDisplayed(BASIC_LINE_ITEM,1000);
+    }
+
     public LineChartSubmenu openLineCharts() {
+        if(!Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()){
+            throw new IllegalStateException("Control is not displayed");
+        }
         Driver.getDriver().findElement(LINE_CHARTS_ITEM).click();
         return new LineChartSubmenu();
     }
 
     public ColumnBarChartSubmenu openColumnBarChartSubmenu() {
+        if(!Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).isDisplayed()){
+            throw new IllegalStateException("Control is not displayed");
+        }
         Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).click();
+        waitUntilLeave();
         return new ColumnBarChartSubmenu();
     }
 
     public PieChartSubmenu openPieChartSubmenu() {
-        Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed();
+        if(!Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed()){
+            throw new IllegalStateException("Control is not displayed");
+        }
         Driver.getDriver().findElement(PIE_CHARTS_ITEM).click();
+        waitUntilLeave();
         return new PieChartSubmenu();
     }
     //</editor-fold>

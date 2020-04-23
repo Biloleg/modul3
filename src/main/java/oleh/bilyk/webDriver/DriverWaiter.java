@@ -22,7 +22,6 @@ import static oleh.bilyk.webDriver.Driver.log;
  * #Comments:
  */
 public class DriverWaiter {
-    private final long MS_500 = 500;
     private long pollingInterval;
 
     //<editor-fold desc="Public methods">

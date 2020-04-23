@@ -12,8 +12,12 @@ public void tearDown(){
     Driver.kill();
 }
     @Test
-    public void shouldAnswerWithTrue() {
-        new MainPage().openLineCharts().openAjaxLineChart().mouseOver();
-        System.out.println("");
+    public void lineChartTest() {
+        new MainPage().openLineCharts().openAjaxLineChart().checkTooltipsValue();
+    }
+
+    @Test
+    public void columnChartTest() {
+        new MainPage().openColumnBarChartSubmenu().openBasicColumnChart().checkTooltipsValue();
     }
 }

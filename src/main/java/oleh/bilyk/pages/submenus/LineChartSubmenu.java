@@ -3,6 +3,7 @@ package oleh.bilyk.pages.submenus;
 import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.MainPage;
 import oleh.bilyk.pages.charts.AjaxLineChart;
+import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
 /**
@@ -16,6 +17,10 @@ public class LineChartSubmenu extends MainPage {
     private static final By BASIC_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-basic']");
     private static final By AJAX_LINE_ITEM = By.cssSelector(".nav-sidebar [href='\\/demo\\/line-ajax']");
     private static final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
+
+    public LineChartSubmenu(){
+        new DriverWaiter().waitForElementDisplayed(AJAX_LINE_ITEM);
+    }
 
     //<editor-fold desc="Public Methods">
     public boolean verify(){

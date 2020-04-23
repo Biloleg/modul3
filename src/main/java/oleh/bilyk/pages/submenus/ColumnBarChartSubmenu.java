@@ -2,6 +2,7 @@ package oleh.bilyk.pages.submenus;
 
 import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.charts.BasicColumnChart;
+import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
 /**
@@ -15,6 +16,10 @@ public class ColumnBarChartSubmenu {
     private static final By BASIC_BAR_ITEM = By.cssSelector("[href='\\/demo\\/bar-basic']");
     private static final By BASIC_COLUMN_ITEM = By.cssSelector("[href='\\/demo\\/column-basic']");
     private static final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
+
+    public ColumnBarChartSubmenu(){
+        new DriverWaiter().sleep(1000);
+    }
 
     //<editor-fold desc="Public Methods">
     public boolean verify(){
