@@ -42,9 +42,7 @@ public class StringHelper {
 
     public static Double parseStringToDouble(String number) {
         number = number.trim();
-        number = '.' == new DecimalFormatSymbols().getDecimalSeparator()
-                ? number.replace(",", ".")
-                : number.replace(".", ",");
+        number = number.replace(",", ".");
         return Double.parseDouble(number);
     }
 

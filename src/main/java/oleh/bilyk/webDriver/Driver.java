@@ -34,6 +34,7 @@ public class Driver {
     public static WebDriver getDriver() {
         if (driver.get() == null) {
             driver.set(init());
+            driver.get().manage().window().maximize();
         }
         return driver.get();
     }

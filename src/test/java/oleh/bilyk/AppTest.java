@@ -20,4 +20,9 @@ public void tearDown(){
     public void columnChartTest() {
         new MainPage().openColumnBarChartSubmenu().openBasicColumnChart().checkTooltipsValue();
     }
+
+    @Test
+    public void pieChartTest() {
+        new MainPage().openPieChartSubmenu().openPieDrilldownChart();//.checkTooltipsValue();
+    }
 }

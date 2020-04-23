@@ -1,5 +1,7 @@
 package oleh.bilyk.pages.charts;
 
+import org.openqa.selenium.By;
+
 /**
  * #Summary:
  * #Author: Oleh_Bilyk
@@ -8,4 +10,7 @@ package oleh.bilyk.pages.charts;
  * #Comments:
  */
 public class PieDrilldownChart {
+    private static final By POINTS = By.cssSelector(".highcharts-point");
+    private static final By TOOLTIP = By.cssSelector(".highcharts-container tbody tr");
+
 }
