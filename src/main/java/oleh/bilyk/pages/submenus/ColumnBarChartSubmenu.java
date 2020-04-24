@@ -2,8 +2,8 @@ package oleh.bilyk.pages.submenus;
 
 import io.qameta.allure.Step;
 import oleh.bilyk.pages.MainPage;
-import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.charts.BasicColumnMultiChart;
+import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
@@ -19,17 +19,17 @@ public class ColumnBarChartSubmenu extends MainPage {
     private static final By BASIC_COLUMN_ITEM = By.cssSelector("[href='\\/demo\\/column-basic']");
     private static final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
 
-    public ColumnBarChartSubmenu(){
+    public ColumnBarChartSubmenu() {
         new DriverWaiter().sleep(1000);
     }
 
     //<editor-fold desc="Public Methods">
-    public boolean verify(){
+    public boolean verify() {
         return Driver.getDriver().findElement(BASIC_BAR_ITEM).isDisplayed();
     }
 
     @Step
-    public BasicColumnMultiChart openBasicColumnChart(){
+    public BasicColumnMultiChart openBasicColumnChart() {
         Driver.getDriver().findElement(BASIC_COLUMN_ITEM).click();
         return new BasicColumnMultiChart();
     }

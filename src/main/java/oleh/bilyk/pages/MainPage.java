@@ -45,13 +45,13 @@ public class MainPage {
     }
 
     @Step("Wait until leave the Main page")
-    public void waitUntilLeave(){
-        new DriverWaiter().waitForElementIsNotDisplayed(BASIC_LINE_ITEM,1000);
+    public void waitUntilLeave() {
+        new DriverWaiter().waitForElementIsNotDisplayed(BASIC_LINE_ITEM, 1000);
     }
 
     @Step
     public LineChartSubmenu openLineCharts() {
-        if(!Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()){
+        if (!Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()) {
             throw new IllegalStateException("Control is not displayed");
         }
         Driver.getDriver().findElement(LINE_CHARTS_ITEM).click();
@@ -60,7 +60,7 @@ public class MainPage {
 
     @Step
     public ColumnBarChartSubmenu openColumnBarChartSubmenu() {
-        if(!Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).isDisplayed()){
+        if (!Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).isDisplayed()) {
             throw new IllegalStateException("Control is not displayed");
         }
         Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).click();
@@ -70,7 +70,7 @@ public class MainPage {
 
     @Step
     public PieChartSubmenu openPieChartSubmenu() {
-        if(!Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed()){
+        if (!Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed()) {
             throw new IllegalStateException("Control is not displayed");
         }
         Driver.getDriver().findElement(PIE_CHARTS_ITEM).click();

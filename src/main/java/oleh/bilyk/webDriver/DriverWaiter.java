@@ -1,13 +1,11 @@
 package oleh.bilyk.webDriver;
 
-import oleh.bilyk.helpers.CollectionHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 

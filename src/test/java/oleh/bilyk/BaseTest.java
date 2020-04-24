@@ -1,8 +1,6 @@
 package oleh.bilyk;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
 import oleh.bilyk.helpers.AllureEnvironmentWriter;
 import oleh.bilyk.helpers.Config;
 import oleh.bilyk.webDriver.Driver;
@@ -12,10 +10,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.IOException;
-
 import static oleh.bilyk.webDriver.Driver.getDriver;
-import static org.testng.TestRunner.PriorityWeight.dependsOnMethods;
 
 /**
  * #Summary:
@@ -26,11 +21,11 @@ import static org.testng.TestRunner.PriorityWeight.dependsOnMethods;
  */
 public abstract class BaseTest {
     @BeforeSuite(alwaysRun = true)
-    public void writeEnvironmentProp(){
+    public void writeEnvironmentProp() {
         AllureEnvironmentWriter.write("OS", System.getProperty("os.name"));
-        AllureEnvironmentWriter.write("Java ver.",System.getProperty("java.version"));
+        AllureEnvironmentWriter.write("Java ver.", System.getProperty("java.version"));
         AllureEnvironmentWriter.write("Browser", Config.getInstance().BROWSER().toString());
-        AllureEnvironmentWriter.write("Base URL",Config.getInstance().BASE_HOST());
+        AllureEnvironmentWriter.write("Base URL", Config.getInstance().BASE_HOST());
     }
 
     @AfterMethod(alwaysRun = true)

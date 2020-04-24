@@ -8,6 +8,13 @@ import java.util.Properties;
 
 import static oleh.bilyk.webDriver.Driver.log;
 
+/**
+ * #Summary:
+ * #Author: Oleh_Bilyk
+ * #Author’s Email: oleh_bilyk@epam.com
+ * #Creation Date: 24/04/2020
+ * #Comments:
+ */
 public class AllureEnvironmentWriter {
     private static final String PATH_TO_PROP_FILE = "target/allure-results/environment.properties";
 

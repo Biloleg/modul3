@@ -1,9 +1,9 @@
 package oleh.bilyk.pages.submenus;
 
 import io.qameta.allure.Step;
-import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.MainPage;
 import oleh.bilyk.pages.charts.AjaxLineMultiChart;
+import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
@@ -19,17 +19,17 @@ public class LineChartSubmenu extends MainPage {
     private static final By AJAX_LINE_ITEM = By.cssSelector(".nav-sidebar [href='\\/demo\\/line-ajax']");
     private static final By LABELS_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-labels']");
 
-    public LineChartSubmenu(){
+    public LineChartSubmenu() {
         new DriverWaiter().waitForElementDisplayed(AJAX_LINE_ITEM);
     }
 
     //<editor-fold desc="Public Methods">
-    public boolean verify(){
+    public boolean verify() {
         return Driver.getDriver().findElement(BASIC_LINE_ITEM).isDisplayed();
     }
 
     @Step
-    public AjaxLineMultiChart openAjaxLineChart(){
+    public AjaxLineMultiChart openAjaxLineChart() {
         Driver.getDriver().findElement(AJAX_LINE_ITEM).click();
         return new AjaxLineMultiChart();
     }

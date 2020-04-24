@@ -1,7 +1,6 @@
 package oleh.bilyk;
 
 import io.qameta.allure.Feature;
-import oleh.bilyk.helpers.AllureEnvironmentWriter;
 import oleh.bilyk.pages.MainPage;
 import org.testng.annotations.Test;
 

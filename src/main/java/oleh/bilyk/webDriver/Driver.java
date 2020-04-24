@@ -1,8 +1,6 @@
 package oleh.bilyk.webDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Description;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import oleh.bilyk.helpers.Config;
