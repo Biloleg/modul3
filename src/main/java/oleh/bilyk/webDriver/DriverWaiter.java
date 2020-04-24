@@ -25,64 +25,6 @@ public class DriverWaiter {
     private long pollingInterval;
 
     //<editor-fold desc="Public methods">
-    public void waitForAnyElementIsPresent(final List<By> elements, final long... msToWait) {
-        final long msToWaitLoc = msToWait.length > 0 ? msToWait[0] : 10_000;
-        Waiter waiter = () ->
-                waitUntilExpected(driver -> {
-                    if (!elements.isEmpty()) {
-                        try {
-                            List<By> byMobileElementMap = CollectionHelper.filterList(elements,
-                                    element -> !driver.findElements(element).isEmpty());
-                            if (!byMobileElementMap.isEmpty()) {
-                                log.info(String.format("The element(s) '%s' is present on the page.", byMobileElementMap));
-                                return true;
-                            } else {
-                                log.info(String.format("None of elements '%s' is present on the page. Waiting...", elements));
-                                return false;
-                            }
-                        } catch (TimeoutException e) {
-                            log.info(String.format("None of elements '%s' is present after timeout '%d' millisec(s).", elements, msToWaitLoc));
-                            return false;
-                        }
-                    } else {
-                        throw new WebDriverException("List of elements to check is empty");
-                    }
-                }, msToWaitLoc);
-        changeTimeOutsAndWait(waiter, 50, 10);
-    }
-
-    public void waitForAnyElementIsDisplayed(final List<By> elements, final long... msToWait) {
-        long msToWaitLoc = msToWait.length > 0 ? msToWait[0] : 10_000;
-        waitForAnyElementIsPresent(elements, msToWait);
-        Waiter waiter = () ->
-                waitUntilExpected(driver -> {
-                    if (!elements.isEmpty()) {
-                        try {
-                            List<By> MobileElement = CollectionHelper.filterList(elements, element -> {
-                                try {
-                                    return driver.findElement(element).isDisplayed();
-                                } catch (NoSuchElementException e) {
-                                    return false;
-                                }
-                            });
-                            if (!MobileElement.isEmpty()) {
-                                log.info(String.format("The element(s) '%s' is displayed on the page.", MobileElement));
-                                return true;
-                            } else {
-                                log.info(String.format("None of elements '%s' is displayed on the page. Waiting...", MobileElement));
-                                return false;
-                            }
-                        } catch (TimeoutException e) {
-                            log.info(String.format("None of elements '%s' is displayed after timeout '%d' millisec(s).", elements, msToWaitLoc));
-                            return false;
-                        }
-                    } else {
-                        throw new WebDriverException("List of elements to check is empty");
-                    }
-                }, msToWaitLoc);
-        changeTimeOutsAndWait(waiter, 50, 10);
-    }
-
     public void waitForElementPresent(final By element, final long... msToWait) {
         final long msToWaitLoc = msToWait.length > 0 ? msToWait[0] : 10_000;
         try {

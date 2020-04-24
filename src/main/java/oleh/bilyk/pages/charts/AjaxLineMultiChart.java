@@ -18,15 +18,14 @@ import static oleh.bilyk.webDriver.Driver.getDriver;
  * #Creation Date: 22/04/2020
  * #Comments:
  */
-public class AjaxLineChart extends AbstractChart {
+public class AjaxLineMultiChart extends AbstractMultiChart implements TestableChart {
     private static final By CHARTS = By.xpath("//*[contains(@class,'highcharts-markers')]");
     private static final By POINTS = By.xpath("*[contains(@class,'highcharts-point')]");
     private static final By TOOLTIP = By.cssSelector(".highcharts-tooltip > text");
 
-    public AjaxLineChart() {
+    public AjaxLineMultiChart() {
         super(CHARTS, POINTS, TOOLTIP);
     }
-
 
     @Override
     protected double getTooltipValueForChart(String chartName) {

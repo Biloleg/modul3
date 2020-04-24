@@ -1,8 +1,9 @@
 package oleh.bilyk.pages.submenus;
 
+import io.qameta.allure.Step;
 import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.pages.MainPage;
-import oleh.bilyk.pages.charts.AjaxLineChart;
+import oleh.bilyk.pages.charts.AjaxLineMultiChart;
 import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
@@ -27,9 +28,10 @@ public class LineChartSubmenu extends MainPage {
         return Driver.getDriver().findElement(BASIC_LINE_ITEM).isDisplayed();
     }
 
-    public AjaxLineChart openAjaxLineChart(){
+    @Step
+    public AjaxLineMultiChart openAjaxLineChart(){
         Driver.getDriver().findElement(AJAX_LINE_ITEM).click();
-        return new AjaxLineChart();
+        return new AjaxLineMultiChart();
     }
     //</editor-fold>
 }

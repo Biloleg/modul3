@@ -15,12 +15,12 @@ import static oleh.bilyk.webDriver.Driver.getDriver;
  * #Creation Date: 22/04/2020
  * #Comments:
  */
-public class BasicColumnChart extends AbstractChart {
+public class BasicColumnMultiChart extends AbstractMultiChart implements TestableChart {
     private static final By CHARTS = By.cssSelector(".highcharts-series-group > .highcharts-series");
     private static final By POINTS = By.xpath("*[contains(@class,'highcharts-point') and contains(@class,'highcharts-color-')]");
     private static final By TOOLTIP = By.cssSelector(".highcharts-container tbody tr");
 
-    public BasicColumnChart() {
+    public BasicColumnMultiChart() {
         super(CHARTS, POINTS, TOOLTIP);
     }
 

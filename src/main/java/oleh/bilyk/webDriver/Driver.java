@@ -1,6 +1,8 @@
 package oleh.bilyk.webDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import oleh.bilyk.helpers.Config;
@@ -9,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
 
 /**
  * #Summary:
@@ -19,13 +22,14 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Driver {
-    public final static Logger log = Logger.getLogger("mylog");
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public static final Logger log = Logger.getLogger("mylog");
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     //<editor-fold desc="Enums">
     public enum Browser {
         CHROME,
         FIREFOX,
+        OPERA,
         IE;
     }
     //</editor-fold>
@@ -55,6 +59,9 @@ public class Driver {
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
+            case OPERA:
+                WebDriverManager.operadriver().setup();
+                return new OperaDriver();
             case IE:
                 WebDriverManager.iedriver().setup();
                 return new InternetExplorerDriver();

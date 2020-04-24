@@ -1,5 +1,6 @@
 package oleh.bilyk.pages;
 
+import io.qameta.allure.Step;
 import oleh.bilyk.helpers.Config;
 import oleh.bilyk.pages.submenus.ColumnBarChartSubmenu;
 import oleh.bilyk.pages.submenus.LineChartSubmenu;
@@ -32,6 +33,7 @@ public class MainPage {
     }
 
     //<editor-fold desc="Public Methods">
+    @Step("Verify that Main page is loaded")
     public boolean verify() {
         try {
             return Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()
@@ -42,10 +44,12 @@ public class MainPage {
         return false;
     }
 
+    @Step("Wait until leave the Main page")
     public void waitUntilLeave(){
         new DriverWaiter().waitForElementIsNotDisplayed(BASIC_LINE_ITEM,1000);
     }
 
+    @Step
     public LineChartSubmenu openLineCharts() {
         if(!Driver.getDriver().findElement(LINE_CHARTS_ITEM).isDisplayed()){
             throw new IllegalStateException("Control is not displayed");
@@ -54,6 +58,7 @@ public class MainPage {
         return new LineChartSubmenu();
     }
 
+    @Step
     public ColumnBarChartSubmenu openColumnBarChartSubmenu() {
         if(!Driver.getDriver().findElement(COLUMN_BAR_CHARTS_ITEM).isDisplayed()){
             throw new IllegalStateException("Control is not displayed");
@@ -63,6 +68,7 @@ public class MainPage {
         return new ColumnBarChartSubmenu();
     }
 
+    @Step
     public PieChartSubmenu openPieChartSubmenu() {
         if(!Driver.getDriver().findElement(PIE_CHARTS_ITEM).isDisplayed()){
             throw new IllegalStateException("Control is not displayed");
