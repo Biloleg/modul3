@@ -7,6 +7,7 @@ import oleh.bilyk.helpers.Config;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -53,7 +54,12 @@ public class Driver {
         switch (Config.getInstance().BROWSER()) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                if (Config.getInstance().IS_HEADLESS()) {
+                    options.addArguments("--headless");
+                    options.addArguments("window-size=1800x900");
+                }
+                return new ChromeDriver(options);
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();

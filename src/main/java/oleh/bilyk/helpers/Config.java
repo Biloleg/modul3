@@ -28,6 +28,10 @@ public class Config {
         return instance;
     }
 
+    public final boolean IS_HEADLESS() {
+        return Boolean.parseBoolean(getValuePipeline("headless"));
+    }
+
     public final String BASE_HOST() {
         return getValuePipeline("host");
     }
