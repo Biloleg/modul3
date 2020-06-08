@@ -80,6 +80,8 @@ public class Driver {
                 OperaOptions operaOptions = new OperaOptions();
                 if (Config.getInstance().IS_HEADLESS()) {
                     operaOptions.addArguments("--headless");
+                    operaOptions.addArguments("--no-sandbox");
+                    operaOptions.addArguments("--disable-dev-shm-usage");
                     operaOptions.addArguments("--window-size=1800,900");
                 }
                 return new OperaDriver(operaOptions);
