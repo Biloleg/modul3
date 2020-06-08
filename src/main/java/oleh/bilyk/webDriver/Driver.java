@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -60,12 +61,12 @@ public class Driver {
         switch (Config.getInstance().BROWSER()) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
+                ChromeOptions chromeOptions = new ChromeOptions();
                 if (Config.getInstance().IS_HEADLESS()) {
-                    options.addArguments("--headless");
-                    options.addArguments("window-size=1800x900");
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("window-size=1800x900");
                 }
-                return new ChromeDriver(options);
+                return new ChromeDriver(chromeOptions);
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -76,7 +77,12 @@ public class Driver {
                 return new FirefoxDriver(firefoxOptions);
             case OPERA:
                 WebDriverManager.operadriver().setup();
-                return new OperaDriver();
+                OperaOptions operaOptions = new OperaOptions();
+                if (Config.getInstance().IS_HEADLESS()) {
+                    operaOptions.addArguments("--headless");
+                    operaOptions.addArguments("--window-size=1800,900");
+                }
+                return new OperaDriver(operaOptions);
             case IE:
                 WebDriverManager.iedriver().setup();
                 return new InternetExplorerDriver();
