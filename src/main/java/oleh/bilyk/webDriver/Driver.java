@@ -7,9 +7,14 @@ import oleh.bilyk.helpers.Config;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * #Summary:
@@ -37,14 +42,17 @@ public class Driver {
         if (driver.get() == null) {
             driver.set(init());
             driver.get().manage().window().maximize();
+            driver.get().manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         }
         return driver.get();
     }
 
     public static void kill() {
-        driver.get().close();
-        driver.get().quit();
-        driver.remove();
+        try {
+            driver.get().quit();
+        } finally {
+            driver.remove();
+        }
     }
     //</editor-fold>
 
@@ -53,13 +61,30 @@ public class Driver {
         switch (Config.getInstance().BROWSER()) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (Config.getInstance().IS_HEADLESS()) {
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("window-size=1800x900");
+                }
+                return new ChromeDriver(chromeOptions);
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
-                return new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (Config.getInstance().IS_HEADLESS()) {
+                    firefoxOptions.setHeadless(true);
+                    firefoxOptions.addArguments("--window-size=1800,900");
+                }
+                return new FirefoxDriver(firefoxOptions);
             case OPERA:
                 WebDriverManager.operadriver().setup();
-                return new OperaDriver();
+                OperaOptions operaOptions = new OperaOptions();
+                if (Config.getInstance().IS_HEADLESS()) {
+                    operaOptions.addArguments("--headless");
+                    operaOptions.addArguments("--no-sandbox");
+                    operaOptions.addArguments("--disable-dev-shm-usage");
+                    operaOptions.addArguments("--window-size=1800,900");
+                }
+                return new OperaDriver(operaOptions);
             case IE:
                 WebDriverManager.iedriver().setup();
                 return new InternetExplorerDriver();

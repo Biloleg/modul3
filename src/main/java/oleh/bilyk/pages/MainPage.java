@@ -1,6 +1,7 @@
 package oleh.bilyk.pages;
 
 import io.qameta.allure.Step;
+import lombok.SneakyThrows;
 import oleh.bilyk.helpers.Config;
 import oleh.bilyk.pages.submenus.ColumnBarChartSubmenu;
 import oleh.bilyk.pages.submenus.LineChartSubmenu;
@@ -9,6 +10,7 @@ import oleh.bilyk.webDriver.Driver;
 import oleh.bilyk.webDriver.DriverWaiter;
 import org.openqa.selenium.By;
 
+import static oleh.bilyk.webDriver.Driver.getDriver;
 import static oleh.bilyk.webDriver.Driver.log;
 
 /**
@@ -24,11 +26,14 @@ public class MainPage {
     private static final By COLUMN_BAR_CHARTS_ITEM = By.xpath("//span[.='Column and bar charts']");
     private static final By PIE_CHARTS_ITEM = By.xpath("//span[.='Pie charts']");
     private static final By BASIC_LINE_ITEM = By.cssSelector("[href='\\/demo\\/line-basic']");
+    private static final By COOKIE_ACCEPT_BUTTON = By.id("CybotCookiebotDialogBodyLevelButtonAccept");
 
+    @SneakyThrows
     public MainPage() {
         if (!verify()) {
             Driver.getDriver().navigate().to(Config.getInstance().BASE_HOST());
             new DriverWaiter().waitForElementDisplayed(LINE_CHARTS_ITEM);
+            acceptCookie();
         }
     }
 
@@ -76,6 +81,17 @@ public class MainPage {
         Driver.getDriver().findElement(PIE_CHARTS_ITEM).click();
         waitUntilLeave();
         return new PieChartSubmenu();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Private Methods">
+    @SneakyThrows
+    private void acceptCookie() {
+        new DriverWaiter().waitForElementDisplayed(COOKIE_ACCEPT_BUTTON);
+        if(getDriver().findElement(COOKIE_ACCEPT_BUTTON).isDisplayed()){
+            Thread.sleep(1000);
+            getDriver().findElement(COOKIE_ACCEPT_BUTTON).click();
+        }
     }
     //</editor-fold>
 }
